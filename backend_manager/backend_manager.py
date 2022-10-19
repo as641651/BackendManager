@@ -44,6 +44,20 @@ class BackendManager:
             print(e)
             return 1
 
+    def copy_to_backend(self, local_path, backend_path):
+        call = 'scp -r {local_path} {uname}@{server}:{backend_path}'.format(uname=self.uname,
+                                                                         server=self.server,
+                                                                         backend_path=backend_path,
+                                                                         local_path=local_path)
+        print(call)
+        try:
+            ret = subprocess.check_output(call.split())
+            print(ret)
+            return 0
+        except Exception as e:
+            print(e)
+            return 1
+
     def run_cmd(self, cmd):
         if self.connected:
             print(cmd)
