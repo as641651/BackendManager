@@ -4,8 +4,8 @@ RUN pip3.9 install numpy
 RUN pip3.9 install pandas
 RUN pip3.9 install matplotlib
 
-COPY . /home/libs/AlgorithmRanking
-WORKDIR /home/libs/AlgorithmRanking
+COPY . /home/libs/BackendManager
+WORKDIR /home/libs/BackendManager
 RUN pip3.9 install .
 
 WORKDIR /home/user/
