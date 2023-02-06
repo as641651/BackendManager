@@ -30,6 +30,16 @@ class BackendManager:
             return False
         return -1
 
+    def check_if_dir_exists(self, file_path):
+        if self.connected:
+            cmd = "test -d {};".format(file_path)
+            _, stdout, _ = self.client.exec_command(cmd)
+            ret = stdout.channel.recv_exit_status()
+            if stdout.channel.recv_exit_status() == 0:
+                return True
+            return False
+        return -1
+
     def copy_from_backend(self, backend_path, local_path):
         call = 'scp {uname}@{server}:{backend_path} {local_path}'.format(uname=self.uname,
                                                                          server=self.server,
